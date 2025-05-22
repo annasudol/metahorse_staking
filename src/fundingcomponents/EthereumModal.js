@@ -113,13 +113,16 @@ export const EthereumModal = (props) => {
   };
 
   const onStake = async () => {
-    let ret = await stake(
-      defaultDay === 15 ? 0 : defaultDay === 30 ? 1 : 2,
-      stakeValue * 1e9,
-      address
-    );
-    AlertContext.setAlert(ret);
-    setModalShow(false);
+      let ret = await stake(
+        defaultDay === 15 ? 0 : defaultDay === 30 ? 1 : 2,
+        stakeValue * 1e9,
+        address
+      );
+//Response  "execution reverted: Staking has finished"
+// status: "danger"
+      console.log(ret, "ret");
+      AlertContext.setAlert(ret);
+      setModalShow(false);
   };
   // const onModal = async () => {
   //   onSetModal(true);

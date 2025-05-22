@@ -193,12 +193,16 @@ export const stake = async (mode, price, address) => {
       console.log("error", error);
     }
   }
+  console.log("ethStakingContractToPOST", ethStakingContractToPOST);
+  console.log("address", address);
+  console.log("walletAddressETHToPOST", walletAddressETHToPOST);
   try {
-    if (!ethStakingContractToPOST || address !== walletAddressETHToPOST)
+    // if (!ethStakingContractToPOST || address !== walletAddressETHToPOST)
       await initEthStakingContractToPOST(address);
     let tx = await ethStakingContractToPOST.stake(mode, {
       value: BigNumber.from(1e9).mul(price),
     });
+    console.log(tx, 'tx');
     let res = await tx.wait();
     if (res.transactionHash) {
       return {
